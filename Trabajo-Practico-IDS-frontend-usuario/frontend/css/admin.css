@@ -1,0 +1,370 @@
+/* CSS para Panel de Administración - StudyRoom FIUBA */
+
+/* ==========================================================================
+   VARIABLES DE COLOR Y TIPOGRAFÍA (:root)
+   --------------------------------------------------------------------------
+   El selector :root representa la raíz del documento (el elemento <html>). 
+   Aquí se definen variables globales (Custom Properties) que facilitan mantener 
+   la consistencia visual de la app y realizar cambios de diseño centralizados.
+   ==========================================================================
+*/
+:root {
+  /* Variables de colores para fondos y textos generales */
+  --bg-main: #f4f7fc;
+  --text-main: #333333;
+  --text-muted: #8a94a6;
+  --text-light: #ffffff;
+  
+  /* Colores de acento: se usan para destacar elementos o estados específicos */
+  --color-primary: #0f52ba;        /* Azul principal de botones */
+  --color-primary-hover: #0d469f;  /* Tono más oscuro al pasar el cursor */
+  --color-accent-yellow: #f5a623;  /* Fondo de avatar / logo SR */
+  --color-accent-orange: #ff9f43;  /* Usado para estados "Pendientes" */
+  --color-accent-green: #10ac84;   /* Usado para "Salas totales" */
+  --color-accent-red: #ee5253;     /* Usado para "En mantenimiento" */
+  
+  /* Bordes, Sombras y Radio de curvatura (Border Radius) */
+  --border-color: #e4e8f0;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04); /* Sombra sutil para tarjetas */
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada para modales */
+  --radius: 8px; /* Redondeado estándar para consistencia en la interfaz */
+}
+
+/* ==========================================================================
+   RESET BASE
+   --------------------------------------------------------------------------
+   Limpia las propiedades por defecto de los navegadores para asegurar que el
+   diseño se renderice de forma idéntica en cualquier plataforma.
+   ==========================================================================
+*/
+
+/* El selector universal * aplica a todos los elementos del DOM */
+*, *::before, *::after {
+  /* box-sizing: border-box hace que el padding y los bordes se incluyan dentro del 
+     ancho y alto total asignado al elemento, evitando que se deforme el layout */
+  box-sizing: border-box;
+  /* Resetea márgenes y espaciados internos predeterminados a cero */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Define una pila de fuentes sans-serif del sistema para máxima velocidad de carga */
+  font-family: var(--font-body);
+  /* Aplica las variables declaradas previamente en :root */
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  /* Fuerza al body a ocupar exactamente el 100% de la altura visible del navegador */
+  height: 100vh;
+  /* Oculta las barras de desplazamiento globales; el scroll se maneja de forma interna */
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL
+   --------------------------------------------------------------------------
+   Establece la grilla o distribución macro de la aplicación.
+   ==========================================================================
+*/
+.app-layout {
+  /* Activa Flexbox. Al no especificar flex-direction, los elementos se alinean horizontalmente 
+     (colocando la barra lateral al lado del contenedor principal de contenido) */
+  display: flex;
+  height: 100vh;
+  width: 100vw; /* Asegura que cubra la totalidad del ancho de la pantalla */
+}
+
+/* --- BARRA LATERAL (SIDEBAR) --- */
+/* ===== Variante visual exclusiva del Administrador =====
+   La estructura completa del sidebar vive en global.css. */
+.sidebar--admin .logo-mark {
+  background-color: var(--color-accent-yellow);
+  color: #1a233a;
+  font-weight: 700;
+  font-size: 14pt;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center; /* (Explicado en línea 96) */
+  justify-content: center; /* Centra el texto 'SR' horizontalmente dentro del cuadro */
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL (PAGE CONTENT)
+   --------------------------------------------------------------------------
+   Maneja la sección derecha de la pantalla (Título, Perfil y Vistas).
+   ==========================================================================
+*/
+.page-content {
+  flex-grow: 1; /* (Explicado en línea 133) */
+  display: flex; /* (Explicado en línea 74) */
+  flex-direction: column; /* (Explicado en línea 83) */
+  overflow: hidden; /* (Explicado en línea 67) */
+}
+
+/* Barra Superior (Topbar) */
+.topbar {
+  background-color: var(--text-light);
+  height: var(--alto-topbar);
+  display: flex; /* (Explicado en línea 74) */
+  align-items: center; /* (Explicado en línea 96) */
+  justify-content: space-between; /* (Explicado en línea 85) */
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0; /* (Explicado en línea 87) */
+}
+
+.topbar-title {
+  font-family: var(--font-title);
+  font-size: 16pt;
+  font-weight: 700;
+  color: #111827;
+}
+
+.topbar-right {
+  display: flex; /* (Explicado en línea 74) */
+  align-items: center; /* (Explicado en línea 96) */
+  gap: 16px; /* (Explicado en línea 97) */
+}
+
+.user-chip {
+  display: flex; /* (Explicado en línea 74) */
+  align-items: center; /* (Explicado en línea 96) */
+  gap: 10px; /* (Explicado en línea 97) */
+}
+
+.user-avatar {
+  background-color: var(--color-accent-yellow);
+  color: #1a233a;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Transforma un contenedor cuadrado en un círculo perfecto */
+  display: flex; /* (Explicado en línea 74) */
+  align-items: center; /* (Explicado en línea 96) */
+  justify-content: center; /* (Explicado en línea 106) */
+  font-weight: 700;
+  font-size: 9.5pt;
+}
+
+.user-name {
+  font-size: 10pt;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+/* Área de contenido dinámico */
+.main-area {
+  padding: 32px;
+  /* overflow-y: auto agrega barras de scroll vertical automáticamente solo si el contenido 
+     inyectado por JS supera el tamaño disponible de la pantalla */
+  overflow-y: auto;
+  flex-grow: 1; /* (Explicado en línea 133) */
+}
+
+/* ==========================================================================
+   COMPONENTES INTERNOS (Para inyectar en #dinamic-content-root)
+   --------------------------------------------------------------------------
+   Estilos preparados para dar forma al HTML generado asíncronamente.
+   ==========================================================================
+*/
+
+/* Contenedor de Métricas/Tarjetas */
+.stats-grid {
+  /* Activa la distribución por Rejilla (Grid Layout) de CSS */
+  display: grid;
+  /* Divide la fila en 4 columnas idénticas; cada una ocupa 1 fracción (1fr) del espacio disponible */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; /* Espaciado tanto vertical como horizontal entre tarjetas de la rejilla */
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background-color: var(--text-light);
+  border-radius: var(--radius); /* (Explicado en línea 40) */
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  /* Define un borde base superior de 4 píxeles de grosor */
+  border-top: 4px solid var(--border-color);
+  display: flex; /* (Explicado en línea 74) */
+  flex-direction: column; /* (Explicado en línea 83) */
+  gap: 6px; /* (Explicado en línea 97) */
+}
+
+/* Selectores específicos combinados: cambian el color del borde superior según la clase secundaria */
+.stat-card.blue { border-top-color: var(--color-primary); }
+.stat-card.orange { border-top-color: var(--color-accent-orange); }
+.stat-card.green { border-top-color: var(--color-accent-green); }
+.stat-card.red { border-top-color: var(--color-accent-red); }
+
+.stat-label {
+  font-size: 8.5pt;
+  text-transform: uppercase; /* (Explicado en línea 139) */
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px; /* (Explicado en línea 110) */
+}
+
+.stat-value {
+  font-size: 18pt;
+  font-weight: 700;
+  color: #111827;
+}
+
+.stat-subtext {
+  font-size: 9pt;
+  color: var(--color-accent-orange);
+  font-weight: 500;
+}
+
+/* Botones Generales */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--text-light);
+  border: none; /* (Explicado en línea 148) */
+  padding: 10px 18px;
+  border-radius: var(--radius); /* (Explicado en línea 40) */
+  font-size: 9.5pt;
+  font-weight: 600;
+  cursor: pointer; /* (Explicado en línea 153) */
+  transition: background-color 0.2s ease; /* (Explicado en línea 155) */
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background-color: transparent; /* Fondo invisible */
+  border: 1px solid var(--border-color);
+  color: #4b5563;
+  padding: 10px 18px;
+  border-radius: var(--radius); /* (Explicado en línea 40) */
+  font-size: 9.5pt;
+  font-weight: 500;
+  cursor: pointer; /* (Explicado en línea 153) */
+  transition: all 0.2s ease; /* (Explicado en línea 155) */
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+  border-color: #d1d5db;
+}
+
+/* Estructura de Tabla y Sección de Datos */
+.data-section {
+  background-color: var(--text-light);
+  border-radius: var(--radius); /* (Explicado en línea 40) */
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+}
+
+.data-header {
+  display: flex; /* (Explicado en línea 74) */
+  justify-content: space-between; /* (Explicado en línea 85) */
+  align-items: center; /* (Explicado en línea 96) */
+  margin-bottom: 20px;
+}
+
+.data-title {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #111827;
+}
+
+.select-filter {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #fafafa;
+  font-size: 9.5pt;
+  color: #4b5563;
+  /* Desactiva el recuadro de enfoque por defecto azulado que ponen los navegadores */
+  outline: none; 
+}
+
+/* Tablas */
+.data-table {
+  width: 100%;
+  /* fusiona los bordes dobles de las celdas en uno solo */
+  border-collapse: collapse;
+  text-align: left; /* (Explicado en línea 149) */
+}
+
+.data-table th {
+  font-size: 8.5pt;
+  text-transform: uppercase; /* (Explicado en línea 139) */
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 0.5px; /* (Explicado en línea 110) */
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.data-table td {
+  padding: 14px 16px;
+  font-size: 10pt;
+  color: #4b5563;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Pseudo-clase :last-child aplicada a filas de la tabla */
+.data-table tr:last-child td {
+  /* Quita el borde de separación a la última fila para que no choque feo con el fondo de la tarjeta */
+  border-bottom: none;
+}
+
+/* Modales nativos (<dialog>) */
+.modal-card {
+  border: none; /* (Explicado en línea 148) */
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* (Explicado en línea 41) */
+  padding: 24px;
+  width: 100%;
+  max-width: 500px; /* Evita que el modal se estire infinitamente en pantallas anchas */
+  /* Al usarse en un elemento de posición absoluta o <dialog>, centra el cuadro en la pantalla */
+  margin: auto;
+  outline: none; /* (Explicado en línea 320) */
+}
+
+/* Pseudo-elemento ::backdrop */
+.modal-card::backdrop {
+  /* Permite dar estilo a la capa oscura de fondo "detrás" del cuadro de diálogo abierto */
+  background-color: rgba(17, 24, 39, 0.4);
+  /* Difumina los elementos que están por debajo para dar un efecto moderno de profundidad */
+  backdrop-filter: blur(2px);
+}
+
+.modal-header {
+  display: flex; /* (Explicado en línea 74) */
+  justify-content: space-between; /* (Explicado en línea 85) */
+  align-items: center; /* (Explicado en línea 96) */
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 14pt;
+  font-weight: 700;
+  color: #111827;
+}
+
+.modal-close {
+  background: none; /* (Explicado en línea 147) */
+  border: none;     /* (Explicado en línea 148) */
+  font-size: 14pt;
+  color: var(--text-muted);
+  cursor: pointer;  /* (Explicado en línea 153) */
+}
+
+.modal-form {
+  display: flex; /* (Explicado en línea 74) */
+  flex-direction: column; /* (Explicado en línea 83) */
+  gap: 16px; /* (Explicado en línea 97) */
+}
+
+.modal-actions {
+  display: flex; /* (Explicado en línea 74) */
+  justify-content: flex-end; /* Alinea los botones de confirmación del modal hacia la derecha */
+  gap: 12px; /* (Explicado en línea 97) */
+  margin-top: 12px;
+}

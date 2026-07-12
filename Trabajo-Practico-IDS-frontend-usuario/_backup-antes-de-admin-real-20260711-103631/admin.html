@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyRoom FIUBA — Panel Administrador</title>
+
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div id="app" class="app-layout">
+
+    <aside class="sidebar sidebar-admin">
+
+      <a href="admin.html" class="sidebar-logo">
+        <div class="logo-mark">SR</div>
+        <div>
+          <div class="sidebar-logo-text">StudyRoom FIUBA</div>
+          <div class="sidebar-logo-sub"><span class="admin-tag">ADMIN</span></div>
+        </div>
+      </a>
+
+      <nav class="sidebar-section" aria-label="admin-options">
+        <div class="sidebar-section-label">Gestión</div>
+        <button type="button" class="sidebar-item active" data-tab="aulas">Aulas</button>
+        <button type="button" class="sidebar-item" data-tab="usuarios">Usuarios</button>
+        <button type="button" class="sidebar-item" data-tab="reservas">Reservas</button>
+        <button type="button" class="sidebar-item" data-tab="objetos"> Objetos</button>
+
+        <div class="sidebar-section-label">Ranking</div>
+        <button type="button" class="sidebar-item" data-tab="ranking-aulas">Aulas</button>
+        <button type="button" class="sidebar-item" data-tab="ranking-usuarios">Usuarios</button>
+      </nav>
+
+      <nav class="sidebar-footer">
+        <button type="button" class="sidebar-item" data-tab="perfil"> Perfil</button>
+        <button type="button" class="sidebar-item" data-tab="sobre-la-pagina"> Sobre la Página</button>
+        <a href="login.html" class="sidebar-item" id="btn-logout-admin"> Cerrar sesión</a>
+      </nav>
+
+    </aside>
+
+    <main class="page-content">
+
+      <header class="topbar">
+        <h1 class="topbar-title" id="admin-page-title">Aulas</h1>
+
+        <div class="topbar-right">
+          <div class="user-chip">
+            <div class="user-avatar">AD</div>
+            <span class="user-name">Administrador</span>
+          </div>
+        </div>
+
+      </header>
+
+      <div class="main-area" id="dinamic-content-root"> </div>
+
+    </main>
+  </div>
+
+  <dialog id="modal-generico" class="modal-card">
+
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <button type="button" class="modal-close" data-action="cerrar-modal">✕</button> 
+    </div>
+
+    <form class="modal-form" id="modal-form" method="dialog">
+    
+    <div id="modal-info-contextual" class="modal-info"></div>
+    
+    <div id="modal-fields-container"></div>
+    
+    <div class="modal-actions">
+      <button type="button" data-action="cerrar-modal" class="btn-secondary">Cancelar</button>
+      <button type="submit" id="modal-submit-btn" class="btn-primary">Confirmar</button>
+    </div>
+
+    </form>
+  </dialog>
+
+  <!--
+    api.js es el unico cliente HTTP de toda la app (login, usuario y admin lo
+    comparten). Se carga como script normal (no module) para exponer
+    window.StudyRoomAPI de forma global.
+  -->
+  <script src="js/api.js"></script>
+  <script type="module" src="js/main-admin.js"></script>
+</body>
+</html>

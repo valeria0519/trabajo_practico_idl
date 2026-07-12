@@ -1,0 +1,263 @@
+/* ============================================================
+   CONFIRMACION.CSS — tema claro
+============================================================ */
+
+.confirm-main {
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.confirm-card {
+  background: var(--fondo-card);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  padding: 2.5rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.confirm-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ok-light);
+  color: var(--ok);
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  border: 2px solid var(--ok);
+}
+
+.confirm-title {
+  font-family: "Syne", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--texto);
+  margin-bottom: 6px;
+}
+
+.confirm-sub {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  margin-bottom: 1.25rem;
+}
+
+.confirm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--naranja-bg);
+  color: #92400e;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.badge-dot-state {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--naranja);
+}
+
+.confirm-details {
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-medio);
+  padding: 1rem 1.25rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-key {
+  font-size: 11px;
+  color: var(--texto-suave);
+}
+
+.detail-val {
+  font-size: 12.5px;
+  color: var(--texto);
+  font-weight: 500;
+}
+
+.detail-val.hl {
+  color: var(--azul);
+  font-weight: 700;
+}
+
+/* Flow de estados */
+
+.estado-flow-confirm {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 1.5rem;
+}
+
+.estado-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.estado-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--azul);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: "Syne", sans-serif;
+  flex-shrink: 0;
+}
+
+.muted-circle {
+  background: var(--fondo);
+  color: var(--texto-suave);
+  border: 1.5px solid var(--borde);
+}
+
+.estado-nombre {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+.muted-text {
+  color: var(--texto-suave);
+}
+
+.estado-desc {
+  font-size: 10px;
+  color: var(--texto-suave);
+}
+
+.estado-line {
+  flex: 1;
+  height: 1.5px;
+  background: var(--borde);
+  margin: 0 8px;
+}
+
+.active-state .estado-circle {
+  background: var(--azul);
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Historial */
+
+.historial-section {
+  background: var(--fondo-card);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio-grande);
+  overflow: hidden;
+}
+
+.historial-title {
+  font-family: "Syne", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--texto);
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--borde);
+  background: var(--fondo);
+}
+
+.historial-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.historial-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #f1f5f9;
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: background 0.15s;
+}
+
+.historial-item:last-child {
+  border-bottom: none;
+}
+
+.historial-item:hover {
+  background: #f8fafc;
+}
+
+.hist-sala {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--texto);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.hist-fecha {
+  font-size: 11px;
+  color: var(--texto-suave);
+  font-family: "DM Mono", monospace;
+}
+
+.hist-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-cancel-res {
+  font-size: 11px;
+  padding: 4px 12px;
+  border: 1px solid var(--borde);
+  background: var(--fondo-card);
+  color: var(--texto-suave);
+  border-radius: var(--radio-chico);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btn-cancel-res:hover {
+  border-color: var(--error);
+  color: var(--error);
+  background: var(--error-light);
+}
+
+/* Clases que reemplazan estilos inline */
+
+.hidden {
+  display: none;
+}
+
+.loading-reservas {
+  padding: 2rem;
+  text-align: center;
+  color: var(--texto-suave);
+}

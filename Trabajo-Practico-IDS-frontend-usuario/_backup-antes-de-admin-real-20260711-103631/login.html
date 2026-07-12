@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyRoom FIUBA - Iniciar sesion</title>
+
+  <!--
+    global.css trae el reset y las variables/componentes compartidos.
+    login.css tiene solo lo especifico de esta pantalla (columna azul,
+    selector de rol, formulario). Se mantiene separado del panel
+    administrador para no modificar admin.html/admin.css.
+  -->
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <!--
+    Contenedor principal del Login.
+    Se divide en dos columnas para seguir la referencia:
+    - Izquierda: bloque institucional azul oscuro.
+    - Derecha: formulario de ingreso sobre fondo blanco.
+  -->
+  <main class="login-shell">
+    <!--
+      Columna izquierda.
+      Este componente presenta la identidad de FIUBA y resume el objetivo
+      del sistema antes de que el usuario interactue con el formulario.
+    -->
+    <section class="login-hero" aria-labelledby="login-hero-title">
+      <div class="hero-copy">
+        <p class="hero-kicker">FACULTAD DE INGENIERÍA UBA</p>
+        <h1 id="login-hero-title">Reservá tu sala de estudio en segundos.</h1>
+        <p class="hero-description">
+          Digitaliza la gestión de salas:<br>
+          disponibilidad en tiempo real,<br>
+          estados,<br>
+          reglas de validación<br>
+          y administración de espacios universitarios.
+        </p>
+      </div>
+    </section>
+
+    <!--
+      Columna derecha.
+      El login es SIMULADO: valida los campos en el navegador pero no
+      consulta ningun servidor ni base de datos. Segun el rol elegido,
+      login.js redirige a usuario.html o admin.html.
+    -->
+    <section class="login-panel" aria-labelledby="login-title">
+      <form class="login-card" id="login-form">
+        <div class="login-heading">
+          <h2 id="login-title">Bienvenido/a</h2>
+          <p>Ingresá con tu cuenta universitaria FIUBA.</p>
+        </div>
+
+        <!--
+          Selector de rol.
+          Cada boton usa data-role para que JavaScript pueda saber que rol
+          eligio el usuario sin duplicar logica para cada caso.
+        -->
+        <div class="role-switch" aria-label="Seleccionar rol de acceso">
+          <button
+            class="role-option is-student is-active"
+            type="button"
+            data-role="student"
+            aria-pressed="true"
+          >
+            <svg class="role-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3 2 8l10 5 10-5-10-5Zm-6 8.18V15c0 2.2 2.7 4 6 4s6-1.8 6-4v-3.82l-6 3-6-3Z"/>
+            </svg>
+            <span>Estudiante</span>
+          </button>
+
+          <button
+            class="role-option is-admin"
+            type="button"
+            data-role="admin"
+            aria-pressed="false"
+          >
+            <svg class="role-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 20h16v-2H4v2Zm2-3h3V9H6v8Zm5 0h3V9h-3v8Zm5 0h3V9h-3v8ZM3 7h18L12 2 3 7Z"/>
+            </svg>
+            <span>Administrador</span>
+          </button>
+        </div>
+
+        <!--
+          Campos de acceso.
+          Son campos HTML reales para que la pantalla se pueda probar como
+          formulario, aunque no se envian credenciales a ningun servidor.
+        -->
+        <div class="form-group">
+          <label for="email">EMAIL UNIVERSITARIO</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            placeholder="nombre@fi.uba.ar"
+            aria-describedby="email-error"
+          >
+          <!-- Mensaje de validacion. JS lo completa y lo muestra solo si hay error. -->
+          <span class="field-error" id="email-error" role="alert"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">CONTRASEÑA</label>
+          <div class="password-field">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              aria-describedby="password-error"
+            >
+            <!-- Boton para mostrar/ocultar la contraseña. No envia el formulario (type="button"). -->
+            <button type="button" class="password-toggle" id="password-toggle" aria-pressed="false" aria-label="Mostrar contraseña">
+              Ver
+            </button>
+          </div>
+          <span class="field-error" id="password-error" role="alert"></span>
+          <a class="forgot-link" href="#" aria-label="Recuperar contraseña">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!--
+          Boton principal.
+          JavaScript cambia su clase y su texto dependiendo de si el usuario
+          selecciona Estudiante o Administrador.
+        -->
+        <button class="login-submit is-student" id="login-submit" type="submit">
+          Ingresar al sistema →
+        </button>
+
+        <!--
+          Mensaje de estado general del formulario (ej. "completa los campos").
+          aria-live="polite" hace que un lector de pantalla lo anuncie solo.
+        -->
+        <p class="login-status" id="login-status" aria-live="polite"></p>
+
+        <footer class="login-footer">
+          <p>acceso restringido · solo usuarios FIUBA</p>
+          <p>¿Problemas? Escribinos a <a href="mailto:soporte@fi.uba.ar">soporte@fi.uba.ar</a></p>
+        </footer>
+      </form>
+    </section>
+  </main>
+
+  <!--
+    Script especifico de la pantalla Login.
+    Se carga al final para asegurar que los botones y el formulario ya existen
+    cuando JavaScript intenta conectarlos con eventos.
+  -->
+  <script src="js/login.js"></script>
+</body>
+</html>

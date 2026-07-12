@@ -1,0 +1,21 @@
+/* Estilos especificos del panel estudiante, separados por vista */
+@import url("salas.css");
+@import url("reserva.css");
+@import url("confirmacion.css");
+@import url("perfil.css");
+
+.sidebar button.sidebar-item {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.topbar-title {
+  white-space: nowrap;
+}
+
+.main-area > .page-header:first-child {
+  margin-top: 0;
+}

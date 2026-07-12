@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyRoom FIUBA — Panel Administrador</title>
+
+  <!-- ===== Estilos y tipografias compartidos por ambos paneles ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/admin.css">
+
+  <!--
+    GUARD DE SESION SIMULADO (no es autenticacion real).
+    Se ejecuta de forma sincronica y ANTES de pintar el body para evitar
+    que se vea el panel admin, aunque sea un instante, si alguien entra
+    directo a admin.html sin haber elegido "Administrador" en el login.
+    Solo mira sessionStorage: cualquiera podria editarlo desde la consola
+    del navegador. La proteccion real llegara con el backend (JWT/sesion).
+  -->
+  <script>
+    (function verificarSesionAdmin() {
+      const raw = sessionStorage.getItem('usuario');
+      const usuario = raw ? JSON.parse(raw) : null;
+      if (!usuario || usuario.rol !== 'administrador') {
+        window.location.href = 'login.html';
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <div id="app" class="app-layout">
+
+    <!-- ===== Sidebar unificada =====
+         Comparte el azul institucional y el tamano de menu del panel Usuario. -->
+    <aside class="sidebar sidebar--admin sidebar-admin">
+
+      <!-- ===== Encabezado compartido del sidebar ===== -->
+      <a href="admin.html" class="sidebar-header sidebar-logo">
+        <div class="logo-mark">SR</div>
+        <div class="sidebar-brand">
+          <div class="sidebar-logo-text">StudyRoom FIUBA</div>
+          <!-- ===== Badge de rol Administrador ===== -->
+          <div class="sidebar-role sidebar-logo-sub"><span class="role-badge">ADMIN</span></div>
+        </div>
+      </a>
+
+      <nav class="sidebar-nav sidebar-section" aria-label="admin-options">
+        <div class="sidebar-section-title">Gestión</div>
+        <button type="button" class="sidebar-item active" data-tab="aulas">Aulas</button>
+        <button type="button" class="sidebar-item" data-tab="usuarios">Usuarios</button>
+        <button type="button" class="sidebar-item" data-tab="reservas">Reservas</button>
+        <button type="button" class="sidebar-item" data-tab="objetos"> Objetos</button>
+
+        <div class="sidebar-section-title">Ranking</div>
+        <button type="button" class="sidebar-item" data-tab="ranking-aulas">Aulas</button>
+        <button type="button" class="sidebar-item" data-tab="ranking-usuarios">Usuarios</button>
+      </nav>
+
+      <nav class="sidebar-footer">
+        <button type="button" class="sidebar-item" data-tab="perfil"> Perfil</button>
+        <button type="button" class="sidebar-item" data-tab="sobre-la-pagina"> Sobre la Página</button>
+        <a href="login.html" class="sidebar-item" id="btn-logout-admin"> Cerrar sesión</a>
+      </nav>
+
+    </aside>
+
+    <main class="page-content">
+
+      <header class="topbar">
+        <h1 class="topbar-title" id="admin-page-title">Aulas</h1>
+
+        <div class="topbar-right">
+          <div class="user-chip">
+            <div class="user-avatar">AD</div>
+            <span class="user-name">Administrador</span>
+          </div>
+        </div>
+
+      </header>
+
+      <div class="main-area" id="dinamic-content-root"> </div>
+
+    </main>
+  </div>
+
+  <dialog id="modal-generico" class="modal-card">
+
+    <div class="modal-header">
+      <h2 class="modal-title" id="modal-title"></h2>
+      <button type="button" class="modal-close" data-action="cerrar-modal">✕</button> 
+    </div>
+
+    <form class="modal-form" id="modal-form" method="dialog">
+    
+    <div id="modal-info-contextual" class="modal-info"></div>
+    
+    <div id="modal-fields-container"></div>
+    
+    <div class="modal-actions">
+      <button type="button" data-action="cerrar-modal" class="btn-secondary">Cancelar</button>
+      <button type="submit" id="modal-submit-btn" class="btn-primary">Confirmar</button>
+    </div>
+
+    </form>
+  </dialog>
+
+  <!--
+    El panel admin usa api-mockup.js (localStorage), NO api.js.
+    api.js es el futuro cliente HTTP para el backend real y hoy lo usa
+    unicamente usuario.html. Cuando el backend este listo, admin.html
+    podra migrar a api.js igual que usuario.html.
+  -->
+  <script type="module" src="js/api-mockup.js"></script>
+  <script type="module" src="js/main-admin.js"></script>
+</body>
+</html>

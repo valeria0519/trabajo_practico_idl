@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyRoom FIUBA - Panel estudiante</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- ===== Tipografias compartidas ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/usuario.css">
+
+  <!--
+    GUARD DE SESION SIMULADO (no es autenticacion real).
+    Evita que alguien entre directo a usuario.html sin haber pasado por el
+    login, o que un administrador quede accidentalmente en este panel.
+    Al igual que en admin.html, solo lee sessionStorage: es una proteccion
+    de UX, no de seguridad real.
+  -->
+  <script>
+    (function verificarSesionUsuario() {
+      const raw = sessionStorage.getItem('usuario');
+      const usuario = raw ? JSON.parse(raw) : null;
+      if (!usuario || usuario.rol !== 'usuario') {
+        window.location.href = 'login.html';
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar sidebar--user sidebar-usuario">
+      <!-- ===== Encabezado compartido del sidebar ===== -->
+      <a href="usuario.html" class="sidebar-header sidebar-logo">
+        <div class="logo-mark">SR</div>
+        <div class="sidebar-brand">
+          <div class="sidebar-logo-text">StudyRoom FIUBA</div>
+          <!-- ===== Badge de rol Usuario ===== -->
+          <div class="sidebar-role sidebar-logo-sub"><span class="role-badge">USUARIO</span></div>
+        </div>
+      </a>
+
+      <!-- ===== Puntaje movido debajo del logo =====
+           Conserva el mismo id para que la logica JavaScript siga actualizando el valor. -->
+      <div class="sidebar-puntaje">
+        <div>
+          <div class="puntaje-label">Tu puntaje</div>
+          <span class="puntaje-badge" id="sidebar-puntaje">- pts</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav sidebar-section" aria-label="Navegacion estudiante">
+        <div class="sidebar-section-title">Navegacion</div>
+        <button type="button" class="sidebar-item active" data-tab="salas">Salas disponibles</button>
+        <button type="button" class="sidebar-item" data-tab="reserva">Nueva reserva</button>
+        <button type="button" class="sidebar-item" data-tab="mis-reservas">Mis reservas</button>
+        <button type="button" class="sidebar-item" data-tab="perfil">Mi perfil</button>
+      </nav>
+
+      <nav class="sidebar-footer">
+        <a href="login.html" class="sidebar-item" id="btn-logout-usuario"><span class="si-icon">X</span> Cerrar sesion</a>
+      </nav>
+    </aside>
+
+    <main class="page-content">
+      <header class="topbar">
+        <div class="topbar-title" id="usuario-page-title">Salas disponibles</div>
+        <div class="topbar-right">
+          <button type="button" class="user-chip" data-tab="perfil">
+            <div class="user-avatar" id="topbar-avatar">U</div>
+            <span class="user-name" id="topbar-nombre">Usuario</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="main-area" id="usuario-content-root"></div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script type="module" src="js/main-usuario.js"></script>
+</body>
+</html>

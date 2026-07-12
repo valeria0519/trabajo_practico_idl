@@ -1,0 +1,309 @@
+/* ============================================================
+PERFIL.CSS — Página de perfil del usuario
+============================================================ */
+
+.perfil-layout {
+display: grid;
+grid-template-columns: 280px 1fr;
+gap: 1.25rem;
+align-items: start;
+}
+
+/* ===========================
+SIDEBAR DEL PERFIL
+=========================== */
+
+.perfil-sidebar-card {
+background: var(--fondo-card);
+border: 1px solid var(--borde);
+border-radius: var(--radio-grande);
+padding: 2rem 1.5rem;
+text-align: center;
+box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+
+.perfil-avatar {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+background: var(--azul);
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: var(--font-body);
+font-size: 1.8rem;
+font-weight: 800;
+margin: 0 auto 1rem;
+border: 3px solid var(--azul-light);
+}
+
+.perfil-nombre {
+font-family: var(--font-body);
+font-size: 1.1rem;
+font-weight: 800;
+color: var(--texto);
+margin-bottom: 4px;
+}
+
+.perfil-usuario {
+font-size: 12px;
+color: var(--texto-suave);
+font-family: var(--font-body);
+margin-bottom: 1rem;
+}
+
+/* ===========================
+NIVELES DE USUARIO
+=========================== */
+
+.perfil-nivel {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+padding: 6px 16px;
+border-radius: 999px;
+font-size: 11px;
+font-weight: 700;
+font-family: var(--font-body);
+margin-bottom: 1.25rem;
+}
+
+.nivel-premium {
+background: rgba(245,158,11,.12);
+color: #92400e;
+border: 1px solid var(--naranja-bg);
+}
+
+.nivel-normal {
+background: var(--ok-light);
+color: var(--ok);
+border: 1px solid #a7f3d0;
+}
+
+.nivel-restringido {
+background: var(--error-light);
+color: var(--error);
+border: 1px solid #fecaca;
+}
+
+/* ===========================
+PUNTAJE
+=========================== */
+
+.puntaje-section {
+margin: 1rem 0;
+}
+
+.puntaje-label {
+font-size: 11px;
+color: var(--texto-suave);
+margin-bottom: 6px;
+}
+
+.puntaje-valor {
+font-family: var(--font-body);
+font-size: 1.8rem;
+font-weight: 800;
+color: var(--azul);
+margin-bottom: 6px;
+}
+
+.puntaje-bar {
+height: 6px;
+background: var(--fondo);
+border-radius: 3px;
+overflow: hidden;
+border: 1px solid var(--borde);
+}
+
+.puntaje-fill {
+height: 100%;
+background: linear-gradient(
+  90deg,
+  var(--azul),
+  var(--celeste)
+);
+border-radius: 3px;
+transition: width .6s ease;
+}
+
+.puntaje-escala {
+display: flex;
+justify-content: space-between;
+font-size: 10px;
+color: var(--texto-suave);
+margin-top: 4px;
+}
+
+/* ===========================
+DATOS DEL PERFIL
+=========================== */
+
+.perfil-meta {
+display: flex;
+flex-direction: column;
+margin-top: 1.25rem;
+}
+
+.perfil-meta-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 7px 0;
+border-bottom: 1px solid #f1f5f9;
+font-size: 12px;
+}
+
+.perfil-meta-item:last-child {
+border-bottom: none;
+}
+
+.perfil-meta-key {
+color: var(--texto-suave);
+}
+
+.perfil-meta-val {
+color: var(--texto);
+font-weight: 500;
+}
+
+/* ===========================
+COLUMNA PRINCIPAL
+=========================== */
+
+.perfil-main-col {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+/* ===========================
+TARJETAS
+=========================== */
+
+.edit-card {
+background: var(--fondo-card);
+border: 1px solid var(--borde);
+border-radius: var(--radio-grande);
+padding: 1.5rem;
+box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+
+.edit-card-title {
+font-family: var(--font-body);
+font-size: .9rem;
+font-weight: 700;
+color: var(--texto);
+margin-bottom: 1.25rem;
+padding-bottom: .75rem;
+border-bottom: 1px solid var(--borde);
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+/* ===========================
+FORMULARIO
+=========================== */
+
+.form-grid-2 {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.input-readonly {
+background: var(--fondo);
+color: var(--texto-suave);
+cursor: not-allowed;
+}
+
+/* ===========================
+HISTORIAL DE RESERVAS
+=========================== */
+
+.reserva-item {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 1rem;
+padding: 10px 0;
+border-bottom: 1px solid #f1f5f9;
+}
+
+.reserva-item:last-child {
+border-bottom: none;
+}
+
+.reserva-sala {
+font-size: 13px;
+font-weight: 600;
+color: var(--texto);
+}
+
+.reserva-fecha {
+font-size: 11px;
+color: var(--texto-suave);
+font-family: var(--font-body);
+margin-top: 2px;
+}
+
+/* ===========================
+MENSAJE DE ÉXITO
+=========================== */
+
+.success-msg {
+display: none;
+align-items: center;
+gap: 8px;
+margin-top: 10px;
+padding: 10px 14px;
+background: var(--ok-light);
+color: var(--ok);
+border: 1px solid #a7f3d0;
+border-radius: var(--radio-chico);
+font-size: 12px;
+}
+
+.success-msg.show {
+display: flex;
+}
+
+/* ===========================
+CLASES AUXILIARES
+=========================== */
+
+.text-center {
+text-align: center;
+}
+
+.mt-1 {
+margin-top: 1rem;
+}
+
+.mb-1 {
+margin-bottom: 1rem;
+}
+
+.w-100 {
+width: 100%;
+}
+
+.hidden {
+display: none;
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media (max-width: 900px) {
+.perfil-layout {
+  grid-template-columns: 1fr;
+}
+
+.form-grid-2 {
+  grid-template-columns: 1fr;
+}
+}
