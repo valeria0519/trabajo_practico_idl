@@ -867,19 +867,22 @@ cuando la pantalla mide 768px o menos (tabletas y celulares).
 
 En móvil ocultamos el sidebar y el contenido ocupa todo.
 */
-@media (max-width: 768px)
-.sidebar {
-transform: translateX(-100%); /* mueve el sidebar fuera de pantalla */
-}
 
-.page-content {
-margin-left: 0; /* sin sidebar, el contenido empieza desde el borde */
-}
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
 
-.main-area {
-padding: 1rem 1rem 3rem;
-}
-.sidebar-role {
-background: var(--sidebar-role-bg);
-color: var(--sidebar-accent);
+  .page-content {
+    margin-left: 0;
+  }
+
+  .main-area {
+    padding: 1rem 1rem 3rem;
+  }
+
+  .sidebar-role {
+    background: var(--sidebar-role-bg);
+    color: var(--sidebar-accent);
+  }
 }
