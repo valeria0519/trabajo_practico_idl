@@ -4,7 +4,6 @@ export async function renderUsuarioSalas(root) {
   root.innerHTML = `
     <div class="page-header">
       <div>
-        <h1 class="page-title">Salas disponibles</h1>
         <p class="page-sub" id="fecha-label">Cargando...</p>
       </div>
       <button type="button" class="btn-primary" data-tab="reserva">+ Nueva reserva</button>
