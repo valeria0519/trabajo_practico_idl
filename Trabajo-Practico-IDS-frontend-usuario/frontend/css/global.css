@@ -281,11 +281,11 @@ border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
 .puntaje-badge {
 display: inline-flex;
-font-size: 1rem;
+font-size: 0.75rem;
 font-weight: 600;
 background: rgba(56, 189, 248, 0.15);
 color: var(--celeste);
-padding: 6px 14px;
+padding: 4px 9px;
 border-radius: 20px;
 }
 

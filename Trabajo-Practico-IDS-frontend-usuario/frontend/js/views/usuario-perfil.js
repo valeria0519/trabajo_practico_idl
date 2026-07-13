@@ -7,7 +7,6 @@ export async function renderUsuarioPerfil(root) {
   root.innerHTML = `
     <div class="page-header">
       <div>
-        <h1 class="page-title">Mi perfil</h1>
         <p class="page-sub">Edita tus datos personales y mira tu historial</p>
       </div>
     </div>

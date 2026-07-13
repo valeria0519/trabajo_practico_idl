@@ -16,7 +16,6 @@ export async function renderUsuarioReserva(root, params = {}) {
   root.innerHTML = `
     <div class="page-header">
       <div>
-        <h1 class="page-title">Nueva reserva</h1>
         <p class="page-sub">Selecciona una sala y completa los datos</p>
       </div>
       <button type="button" class="btn-secondary" data-tab="salas">Volver a salas</button>
