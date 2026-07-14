@@ -1,3 +1,5 @@
+import { formatearFechaActual } from '../date-utils.js';
+
 let SALAS = [];
 
 export async function renderUsuarioSalas(root) {
@@ -59,13 +61,7 @@ async function cargarSalones() {
 
 function setFechaHoy() {
   const hoy = new Date();
-  const fechaTexto = hoy.toLocaleDateString('es-AR', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-  document.getElementById('fecha-label').textContent = `Hoy - ${capitalizar(fechaTexto)}`;
+  document.getElementById('fecha-label').textContent = formatearFechaActual(hoy);
   document.getElementById('filtro-fecha').value = hoy.toISOString().slice(0, 10);
 }
 
@@ -167,8 +163,4 @@ function resetFiltros() {
   document.getElementById('filtro-estado').value = 'todos';
   actualizarStats(SALAS);
   renderSalas(SALAS);
-}
-
-function capitalizar(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }

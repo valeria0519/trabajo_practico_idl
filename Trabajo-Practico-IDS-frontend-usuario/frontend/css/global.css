@@ -508,6 +508,45 @@ margin-bottom: 1.5rem;
 flex-wrap: wrap;
 }
 
+/* Ajustes responsive compartidos por ambos paneles. */
+body { overflow-x: hidden; }
+.page-content { min-width: 0; }
+
+@media (max-width: 768px) {
+  .app-layout { flex-direction: column; }
+  .sidebar {
+    position: static;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    max-height: none;
+    flex-basis: auto;
+    overflow: visible;
+    transform: none !important;
+  }
+  .sidebar-header, .sidebar-logo { padding: 0.75rem 1rem; }
+  .sidebar-puntaje { margin-top: 0; padding: 0.6rem 1rem; }
+  .sidebar-nav, .sidebar-section, .sidebar-footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 0.45rem 0.5rem;
+  }
+  .sidebar-section-title { display: none; }
+  .sidebar-item {
+    width: auto;
+    margin: 0;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  .sidebar-footer { margin-top: 0; }
+  .page-content { margin-left: 0; width: 100%; }
+  .main-area { min-width: 0; padding: 1rem 1rem 3rem; }
+  .topbar { padding: 0 1rem; }
+  .topbar-title { min-width: 0; font-size: 1.15rem; }
+  .user-name { display: none; }
+}
+
 .stat-card {
 flex: 1;
 min-width: 120px;
@@ -667,6 +706,41 @@ background: #fff;
 
 .form-input::placeholder {
 color: var(--texto-suave);
+}
+
+/* Grilla reutilizable para formularios de dos columnas. */
+.form-grid-2 {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+/* Estado visual compartido por campos de solo lectura. */
+.input-readonly {
+background: var(--fondo);
+color: var(--texto-suave);
+cursor: not-allowed;
+}
+
+/* Utilidades compartidas. */
+.hidden {
+display: none;
+}
+
+.text-center {
+text-align: center;
+}
+
+.mt-1 {
+margin-top: 1rem;
+}
+
+.mb-1 {
+margin-bottom: 1rem;
+}
+
+.w-100 {
+width: 100%;
 }
 
 
@@ -863,6 +937,12 @@ cuando la pantalla mide 768px o menos (tabletas y celulares).
 
 En móvil ocultamos el sidebar y el contenido ocupa todo.
 */
+
+@media (max-width: 900px) {
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 768px) {
   .sidebar {
