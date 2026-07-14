@@ -5,13 +5,9 @@ CSS simplificado para primer año de Ingeniería Informática.
 ¿Qué es este archivo?
 Contiene el reset, las variables institucionales y los
 componentes reutilizables (sidebar, topbar, botones, badges,
-formularios, modal, toast) que usan usuario.html y, donde
-corresponda, login.html.
-
-admin.html/admin.css NO lo usan: el panel admin ya traía su
-propio sistema de variables y componentes (--color-primary,
-.data-table, etc.) y se dejó intacto a proposito para no
-romper esa pantalla, tal como pidio la consigna.
+formularios, modal y toast) compartidos por login.html,
+usuario.html y admin.html. Cada página carga después su hoja
+específica para aplicar solamente las variantes necesarias.
 ============================================================ */
 
 
