@@ -5,6 +5,7 @@
 
 // Importa la función controladora desde el módulo del modal genérico para abrir formularios dinámicos
 import { abrirModal } from '../modal.js';
+import { formatearFechaActual } from '../date-utils.js';
 
 // Estado local de la vista: Almacena temporalmente la lista de salones para no consultar a la API en cada re-render
 let localSalones = [];
@@ -30,6 +31,12 @@ export async function renderAulas(container) {
 
     // Inyección de la estructura de la vista utilizando Template Literals de JavaScript
     container.innerHTML = `
+      <div class="page-header">
+        <div>
+          <p class="page-sub">${formatearFechaActual()}</p>
+        </div>
+      </div>
+
       <div class="metrics-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
         <div class="stat-card" style="background: #fff; padding: 20px; border-radius: 8px; border-left: 5px solid var(--color-primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
           <small style="color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Salas Totales</small>

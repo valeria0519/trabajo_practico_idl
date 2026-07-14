@@ -212,12 +212,6 @@ box-shadow: 0 0 0 3px rgba(56,189,248,0.12);
 background: #fff;
 }
 
-.form-grid-2 {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 12px;
-}
-
 /* Horarios */
 
 .time-slots {
@@ -257,7 +251,7 @@ cursor: not-allowed;
 text-decoration: line-through;
 }
 
-/* Mensajes de validaciÃ³n */
+/* Mensajes de validacion */
 
 .val-msg {
 font-size: 12px;
@@ -424,12 +418,6 @@ font-size: 12px;
 margin-top: 8px;
 }
 
-/* Reemplazo de style="display:none" */
-
-.hidden {
-display: none;
-}
-
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -441,9 +429,38 @@ display: none;
   position: static;
 }
 
-.form-grid-2 {
-  grid-template-columns: 1fr;
 }
+
+@media (max-width: 1100px) {
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stat-card { min-width: 0; width: 100%; }
+  .rooms-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .page-header { flex-direction: column; }
+  .page-header .btn-primary { width: 100%; justify-content: center; }
+  .stats-row, .rooms-grid { grid-template-columns: minmax(0, 1fr); }
+  .filter-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .filter-input { width: 100%; min-width: 0; }
+  .room-card { min-width: 0; padding: 1rem; }
+  .room-card-top, .room-card-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .room-card-top .badge {
+    align-self: flex-start;
+    white-space: normal;
+  }
+  .btn-reservar { width: 100%; text-align: center; }
 }
 
 
@@ -919,18 +936,6 @@ gap: 8px;
 FORMULARIO
 =========================== */
 
-.form-grid-2 {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 12px;
-}
-
-.input-readonly {
-background: var(--fondo);
-color: var(--texto-suave);
-cursor: not-allowed;
-}
-
 /* ===========================
 HISTORIAL DE RESERVAS
 =========================== */
@@ -986,22 +991,6 @@ display: flex;
 CLASES AUXILIARES
 =========================== */
 
-.text-center {
-text-align: center;
-}
-
-.mt-1 {
-margin-top: 1rem;
-}
-
-.mb-1 {
-margin-bottom: 1rem;
-}
-
-.w-100 {
-width: 100%;
-}
-
 /* ===========================
 RESPONSIVE
 =========================== */
@@ -1011,8 +1000,5 @@ RESPONSIVE
   grid-template-columns: 1fr;
 }
 
-.form-grid-2 {
-  grid-template-columns: 1fr;
-}
 }
 
